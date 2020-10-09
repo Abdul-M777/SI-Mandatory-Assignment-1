@@ -49,6 +49,8 @@ with open("people.csv", newline='') as csvfile:
             "Firstname": firstName, "Lastname": lastName, "cprnumber": cpr, "Email": email
         }
 
+        # Get the nemID
+        data["NemID"] = json.loads(response.content.decode("UTF-8")).get("nemID", None)
         
         # Write msgpack file.
         with open(firstName+".msgpack", "wb") as outfile:

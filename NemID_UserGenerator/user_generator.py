@@ -2,19 +2,19 @@ from flask import request, Response, Flask
 import json
 import random
 
-
+# Create an instance of the flask class
 app = Flask(__name__)
-app.config["DEBUG"] = True
 
-
+# URL
 @app.route("/generate-nemId", methods=["POST"])
+# Generate a nemID
 def api_nemID_generator():
 
-    # exstract data
+    
     cpr = request.json["cpr"]
 
-    if (cpr is None):
-        # create response body
+    if (cpr == None):
+        # Creating the response body
         response_body = {
             "status": "Missing parameters",
             "error_message" : "To generate a nemID you need to specify a cpr and email"
@@ -26,15 +26,15 @@ def api_nemID_generator():
         response.data = json.dumps(response_body)
         return response
     else:
-        # generate random 5 digit code 
+        # Generate the random numbers
         random_digits = random.randint(10000, 99999)
 
-        # create response body
+        # creating the response body
         response_body = {
             "nemId": f"{random_digits}-{cpr[-4:]}"
         }
 
-        # create response
+        # The response
         response = Response()
         response.status_code = 201
         response.data = json.dumps(response_body)

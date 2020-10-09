@@ -14,32 +14,22 @@ def nemID_generator():
     cpr = request.json["cpr"]
 
     # Check if the cpr is empty.
-    if (cpr == None):
-        # Creating the response body
-        response_body = {
-            "status": "Missing parameters",
-            "error_message" : "To generate a nemID you need to specify a cpr and email"
-        }
+    
 
-        # Creating a response
-        response = Response()
-        response.status_code = 401
-        response.data = json.dumps(response_body)
-        return response
-    else:
-        # Generate the random numbers
-        random_digits = random.randint(10000, 99999)
+       
+    # Generate the random numbers
+    random_digits = random.randint(10000, 99999)
 
-        # Creating the response body
-        response_body = {
-            "nemId": f"{random_digits}-{cpr[-4:]}"
+    # Creating the response body
+    response_body = {
+        "nemId": f"{random_digits}-{cpr[-4:]}"
         }
 
         # The response
-        response = Response()
-        response.status_code = 201
-        response.data = json.dumps(response_body)
-        return response
+    response = Response()
+    response.status_code = 201
+    response.data = json.dumps(response_body)
+    return response
 
 if __name__ == "__main__":
     # Start server

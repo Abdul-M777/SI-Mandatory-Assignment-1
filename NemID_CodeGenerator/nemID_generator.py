@@ -15,12 +15,6 @@ def authentication_nem_id():
     nemId = request.json.get("nemId")
 
     # Check if the nemId or the nemIdCode is None.
-    if (nemId is None or nemIdCode is None):
-        # Creating the response body
-        response_body = {
-            "status": "Missing parameters",
-            "error_message" : "To generate a nemID you need to specify a nemIdCode and email"
-        }
         # Connect to the database.
     db = sqlite3.connect('../NemID_ESB/nem_id_database.sqlite')
     # Create a cursor

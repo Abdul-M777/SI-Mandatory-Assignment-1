@@ -14,8 +14,8 @@ def authentication_nem_id():
     nemIdCode = request.json.get("nemIdCode")
     nemId = request.json.get("nemId")
 
-    # Check if the nemId or the nemIdCode is None.
-        # Connect to the database.
+    
+    # Connect to the database.
     db = sqlite3.connect('../NemID_ESB/nem_id_database.sqlite')
     # Create a cursor
     db_cursor = db.cursor()

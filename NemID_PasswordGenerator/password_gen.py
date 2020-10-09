@@ -18,12 +18,12 @@ def password_generator():
     last_2_digit_cpr = str(cpr)[-2:]
     password = jsonify(str(first_2_digit_nemId)+str(last_2_digit_cpr))
 
-        # Creating the response body
+    # Creating the response body
     response_body = {
         "nemIdPassword": f"{password}"
         }
 
-        # Get a response.
+    # Get a response.
     response = Response()
     response.status_code = 200
     response.data = json.dumps(response_body)

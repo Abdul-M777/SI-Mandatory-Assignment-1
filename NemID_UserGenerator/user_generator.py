@@ -13,10 +13,6 @@ def nemID_generator():
     # Making a request and using a json decoder.
     cpr = request.json["cpr"]
 
-    # Check if the cpr is empty.
-    
-
-       
     # Generate the random numbers
     random_digits = random.randint(10000, 99999)
 
@@ -25,7 +21,7 @@ def nemID_generator():
         "nemId": f"{random_digits}-{cpr[-4:]}"
         }
 
-        # The response
+    # The response
     response = Response()
     response.status_code = 201
     response.data = json.dumps(response_body)

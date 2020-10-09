@@ -8,7 +8,7 @@ app = Flask(__name__)
 # URL
 @app.route("/generate-nemId", methods=["POST"])
 # Generate a nemID
-def api_nemID_generator():
+def nemID_generator():
 
     
     cpr = request.json["cpr"]
@@ -41,5 +41,5 @@ def api_nemID_generator():
         return response
 
 if __name__ == "__main__":
-    # begin server
+    # Start server
     app.run(port = 8088)

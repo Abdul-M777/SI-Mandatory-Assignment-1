@@ -8,30 +8,14 @@ import pandas as pd
 import json
 
 # Here we are creating the CPR number.
-# def createCpr(DOB):
-    
-    # return 
-
-
-
-# People = ET.Element('People')
-# In this method we add the people from the people.csv to the Xml file.
-# def addPeople(firstName, lastName, DOB, email):
-#     peopleArr = []
-#     cpr = createCpr(DOB)
-#     person = Person(firstName, lastName, DOB, email, cpr)
-#     person.is_valid()
+def createCpr(DOB):
+    random_4_numbers = random.randint(1000, 9999)
     
     
-#     data = {
-#         "FirstName": person.FirstName, "LastName": person.LastName, "CprNumber": person.Cpr, "Email": person.Email
-#     }
+    return date[:2] + date[3:5] + date [6:] + str(random_4_numbers)
 
 
-    
 
-# peopleArr.append(person)
-# df = pd.read_csv("people.csv")
 with open("people.csv", newline='') as csvfile:
     peopleReader = csv.DictReader(csvfile)
     for row in peopleReader:
@@ -41,8 +25,9 @@ with open("people.csv", newline='') as csvfile:
         email = row['Email']
         date = row['DateOfBirth']
 
-        random_4_numbers = random.randint(1000, 9999)
-        cpr = date[:2] + date[3:5] + date [6:] + str(random_4_numbers)
+
+        cpr = createCpr(date)
+        
 
         person_obj = ET.Element("Person")
     

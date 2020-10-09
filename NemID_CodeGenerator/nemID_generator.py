@@ -47,6 +47,6 @@ def authentication_nem_id():
         response.data = json.dumps(response_body)
 
 if __name__ == "__main__":
-    # begin server
+    # Start Server
     app.run(port = 8090)
 

@@ -3,35 +3,35 @@ import json
 import random
 import sqlite3
 
-
+# Create an instance of the flask class
 app = Flask(__name__)
-app.config["DEBUG"] = True
 
-
+# URL
 @app.route("/nemid-auth", methods=["POST"])
 def authentication_nem_id():
 
-    # exstract data
+    
     nemIdCode = request.json.get("nemIdCode")
     nemId = request.json.get("nemId")
 
+    # Check if the nemId or the nemIdCode is None.
     if (nemId is None or nemIdCode is None):
-        # create response body
+        # Creating the response body
         response_body = {
             "status": "Missing parameters",
             "error_message" : "To generate a nemID you need to specify a nemIdCode and email"
         }
+        # Connect to the database.
     db = sqlite3.connect('../NemID_ESB/nem_id_database.sqlite')
-    
+    # Create a cursor
     db_cursor = db.cursor()
-    query = """SELECT Password FROM user WHERE NemID = """+nemId
-    db_result = db_cursor.execute(query)
-    db_pass = db_cursor.fetchone()
-    if (db_pass == nemIdCode):
-    # create response body
+    # SQL statement
+    query = """SELECT Id FROM user WHERE NemID = ? AND Password = ?"""
+    db_result = db_cursor.execute(query,[nemId,nemIdCode])
+    if (db_result == nemIdCode):
         response_body = {
             "generatedCode": random.randint(100000,999999)}
-    # create response
+    # Response
         response = Response()
         response.status_code = 200
         response.data = json.dumps(response_body)
@@ -41,7 +41,7 @@ def authentication_nem_id():
             "status": "403",
             "error_message" : "Forbidden"
         }
-        # create response
+        # Response
         response = Response()
         response.status_code = 403
         response.data = json.dumps(response_body)

@@ -12,6 +12,7 @@
     "express": "^4.17.1",
     "express-xml-bodyparser": "^0.3.0",
     "light-esb-node": "^1.2.5",
+    "readline-sync": "^1.4.10",
     "request": "^2.88.2",
     "sqlite3": "^5.0.0",
     "xmlbuilder": "^15.1.1",

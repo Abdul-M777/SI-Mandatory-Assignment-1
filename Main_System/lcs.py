@@ -7,19 +7,18 @@ import msgpack
 import pandas as pd
 import json
 
-# Here we are creating the CPR number.
+# Creating the CPR number.
 def createCpr(DOB):
     random_4_numbers = random.randint(1000, 9999)
-    
-    
     return date[:2] + date[3:5] + date [6:] + str(random_4_numbers)
 
 
-
+# Open the csv file.
 with open("people.csv", newline='') as csvfile:
     peopleReader = csv.DictReader(csvfile)
+    # Go through every person in the csv file.
     for row in peopleReader:
-
+        # Create file structure for the xml file.
         firstName = row["FirstName"]
         lastName = row['LastName']
         email = row['Email']
@@ -40,28 +39,18 @@ with open("people.csv", newline='') as csvfile:
         tree.write(firstName + ".xml")
         headers = {'Content-Type': 'application/xml'}
 
-        # # Here we send 
-        # with open('Cpr.xml') as xml:
+          
+        # Posting the xml body to 8080/nemID. 
         response = requests.post("http://localhost:8080/nemID", data=ET.tostring(person_obj), headers=headers)
-        json.loads(response.content)["nemID"]
         print(response)
 
+        # Storing data as msgpack
         data = {
             "Firstname": firstName, "Lastname": lastName, "cprnumber": cpr, "Email": email
         }
 
         
-
+        # Write msgpack file.
         with open(firstName+".msgpack", "wb") as outfile:
             packed = msgpack.packb(data)
             outfile.write(packed) 
-
-
-
-# Here we open the people.csv file and we use the rows from the csv file in the addPeople method.
-
-
-# Here we create the xml file and we call it Cpr.xml.
-
-
-#   

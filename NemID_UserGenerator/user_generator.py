@@ -10,9 +10,10 @@ app = Flask(__name__)
 # Generate a nemID
 def nemID_generator():
 
-    
+    # Making a request and using a json decoder.
     cpr = request.json["cpr"]
 
+    # Check if the cpr is empty.
     if (cpr == None):
         # Creating the response body
         response_body = {
@@ -20,7 +21,7 @@ def nemID_generator():
             "error_message" : "To generate a nemID you need to specify a cpr and email"
         }
 
-        # create response
+        # Creating a response
         response = Response()
         response.status_code = 401
         response.data = json.dumps(response_body)
@@ -29,7 +30,7 @@ def nemID_generator():
         # Generate the random numbers
         random_digits = random.randint(10000, 99999)
 
-        # creating the response body
+        # Creating the response body
         response_body = {
             "nemId": f"{random_digits}-{cpr[-4:]}"
         }

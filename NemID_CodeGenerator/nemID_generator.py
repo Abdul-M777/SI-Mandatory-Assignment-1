@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route("/nemid-auth", methods=["POST"])
 def authentication_nem_id():
 
-    
+    # Making a request and using a json decoder.
     nemIdCode = request.json.get("nemIdCode")
     nemId = request.json.get("nemId")
 

@@ -9,9 +9,11 @@ app = Flask(__name__)
 @app.route("/generate-password-nemID", methods=["POST"])
 def password_generator():
 
+    # Making a request and using a json decoder.
     nemId = request.json["nemId"]
     cpr = request.json["cpr"]
 
+    # Check if the nemId and the cpr are empty.
     if (nemId is None or cpr is None):
         # Creating the response body
         response_body = {

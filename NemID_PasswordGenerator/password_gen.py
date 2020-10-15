@@ -16,7 +16,7 @@ def password_generator():
     # Check if the nemId and the cpr are empty.
     first_2_digit_nemId = str(nemId)[:2]
     last_2_digit_cpr = str(cpr)[-2:]
-    password = jsonify(str(first_2_digit_nemId)+str(last_2_digit_cpr))
+    password = str(first_2_digit_nemId)+str(last_2_digit_cpr)
 
     # Creating the response body
     response_body = {

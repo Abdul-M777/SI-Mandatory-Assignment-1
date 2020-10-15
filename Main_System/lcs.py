@@ -36,7 +36,6 @@ with open("people.csv", newline='') as csvfile:
         ET.SubElement(person_obj, "email").text = email
         
         tree = ET.ElementTree(person_obj)
-        tree.write(firstName + ".xml")
         headers = {'Content-Type': 'application/xml'}
 
           
@@ -53,6 +52,6 @@ with open("people.csv", newline='') as csvfile:
         data["NemID"] = json.loads(response.content.decode("UTF-8")).get("nemID", None)
         
         # Write msgpack file.
-        with open(firstName+".msgpack", "wb") as outfile:
+        with open(cpr+".msgpack", "wb") as outfile:
             packed = msgpack.packb(data)
             outfile.write(packed) 
